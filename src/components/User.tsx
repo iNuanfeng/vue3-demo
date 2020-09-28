@@ -3,11 +3,17 @@ import {
   ref,
   onMounted,
   watch,
-  toRefs
+  toRefs,
+  reactive
 } from 'vue'
 import {
   fetchUserRepositories
 } from '../api/user.js'
+
+interface Book {
+  title: string
+  year?: number
+};
 
 export default {
   // components: { RepositoriesFilters, RepositoriesSortBy, RepositoriesList },
@@ -27,6 +33,8 @@ export default {
     
     const { user } = toRefs(props)
     const repositories = ref([])
+
+    const book = reactive<Book>({ title: 'Vue 3 Guide' })
     
     const getUserRepositories = async () => {
     console.log('context', context)
@@ -46,7 +54,8 @@ export default {
     
     return {
       repositories,
-      getUserRepositories
+      getUserRepositories,
+      book
     }
   },
   mounted() {
@@ -56,6 +65,6 @@ export default {
     }, 1000)
   },
   render() {
-    return (<h2 ref='root' >{this.repositories}</h2>)
+    return (<h2 ref='root' >{this.repositories}, {this.book.title}</h2>)
   }
 }

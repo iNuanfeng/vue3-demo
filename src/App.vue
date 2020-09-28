@@ -19,7 +19,7 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 // import * as ref from './composition/reflect.js'
-import User from './components/User.jsx'
+import User from './components/User.tsx'
 import Reactive from './components/Reactive.jsx'
 
 export default {
